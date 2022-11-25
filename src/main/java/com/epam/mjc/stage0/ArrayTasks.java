@@ -1,5 +1,6 @@
 package com.epam.mjc.stage0;
 
+
 /**
  * Here are the tasks for working with the arrays.
  * <p>
@@ -11,7 +12,7 @@ public class ArrayTasks {
      * Return a String[] array that will list all the seasons of the year, starting with winter.
      */
     public String[] seasonsArray() {
-
+        return new String[] {"winter","spring","summer","autumn"};
     }
 
     /**
@@ -25,7 +26,11 @@ public class ArrayTasks {
      * length = 5  -> [1, 2, 3, 4, 5]
      */
     public int[] generateNumbers(int length) {
-
+        int[] arr = new int[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = i + 1;
+        }
+        return arr;
     }
 
     /**
@@ -37,7 +42,11 @@ public class ArrayTasks {
      * arr = [5, -3, -4] -> sum = -2
      */
     public int totalSum(int[] arr) {
-
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
     }
 
     /**
@@ -51,6 +60,11 @@ public class ArrayTasks {
      */
     public int findIndexOfNumber(int[] arr, int number) {
 
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] == number)
+                return i;
+        }
+        return -1;
     }
 
     /**
@@ -63,7 +77,11 @@ public class ArrayTasks {
      * arr = ["pineapple", "apple", "pen"] -> ["pen", "apple", "pineapple"]
      */
     public String[] reverseArray(String[] arr) {
-
+        String[] arr1 = new String[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            arr1[i] = arr[arr.length - i - 1];
+        }
+        return arr1;
     }
 
     /**
@@ -78,7 +96,20 @@ public class ArrayTasks {
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-
+        int count = 0;
+        for (int j : arr) {
+            if (j > 0)
+                count++;
+        }
+        int[] arr1 = new int[count];
+        int j = 0;
+        for (int k : arr) {
+            if (k > 0) {
+                arr1[j] = k;
+                j++;
+            }
+        }
+        return arr1;
     }
 
     /**
@@ -92,6 +123,41 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
+        for (int[] ints : arr) {
+            sort(ints);
+        }
+        for (int j = 0; j < arr.length; j++) {
+            int k = j;
+            int min = arr[j].length;
+            for (int i = j; i < arr.length; i++) {
+                if (arr[i].length < min) {
+                    min = arr[i].length;
+                    k = i;
+                }
+            }
 
+            int[] temp = arr[j];
+            arr[j] = arr[k];
+            arr[k] = temp;
+        }
+        return arr;
     }
+
+    public static int[] sort(int[] arr){
+        for (int j = 0; j < arr.length; j++) {
+            int k = j;
+            int min = arr[j];
+            for (int i = j; i < arr.length; i++) {
+                if (arr[i] < min) {
+                    min = arr[i];
+                    k = i;
+                }
+            }
+            int temp = arr[j];
+            arr[j] = arr[k];
+            arr[k] = temp;
+        }
+        return arr;
+    }
+
 }
